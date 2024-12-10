@@ -1,47 +1,25 @@
-import customtkinter as ctk
-from tkinter import messagebox
+import streamlit as st
 
 # إعداد الواجهة
-ctk.set_appearance_mode("System")  # الوضع (System, Dark, Light)
-ctk.set_default_color_theme("blue")  # الثيم (blue, dark-blue, green)
+st.set_page_config(page_title="Weather Vision Applications", layout="centered")
 
-# إنشاء النافذة الرئيسية
-app = ctk.CTk()
-app.title("Weather Vision Applications")
-app.geometry("700x500")
+st.title("Weather Vision Applications")
+st.subheader("Explore cutting-edge applications of computer vision in weather analysis.")
 
-# دالة لتشغيل الأكواد الخاصة بكل تطبيق
+# دالة لتشغيل التطبيقات
 def run_application(app_name):
-    messagebox.showinfo("Run Application", f"Running {app_name}...")
+    st.write(f"Running {app_name}...")
     # هنا تضيف الأكواد الخاصة بكل تطبيق
     if app_name == "Weather Prediction":
-        pass  # استبدل بـ الكود الخاص
+        st.write("Running Weather Prediction code...")
     elif app_name == "Cloud Detection":
-        pass  # استبدل بـ الكود الخاص
+        st.write("Running Cloud Detection code...")
     elif app_name == "Rainfall Estimation":
-        pass  # استبدل بـ الكود الخاص
+        st.write("Running Rainfall Estimation code...")
     elif app_name == "Storm Tracking":
-        pass  # استبدل بـ الكود الخاص
+        st.write("Running Storm Tracking code...")
 
-# عنوان واجهة المستخدم
-title_label = ctk.CTkLabel(
-    app, 
-    text="Weather Vision Applications",
-    font=("Roboto", 28, "bold"),
-    text_color="teal"
-)
-title_label.pack(pady=20)
-
-# شرح واجهة المستخدم
-subtitle_label = ctk.CTkLabel(
-    app, 
-    text="Explore cutting-edge applications of computer vision in weather analysis.",
-    font=("Roboto", 16),
-    text_color="gray"
-)
-subtitle_label.pack(pady=10)
-
-# الإطارات الخاصة بكل تطبيق
+# إنشاء الأزرار الخاصة بكل تطبيق
 applications = [
     "Weather Prediction",
     "Cloud Detection",
@@ -50,15 +28,5 @@ applications = [
 ]
 
 for app_name in applications:
-    app_button = ctk.CTkButton(
-        app,
-        text=app_name,
-        font=("Roboto", 18),
-        fg_color="teal",
-        hover_color="dark cyan",
-        command=lambda name=app_name: run_application(name)
-    )
-    app_button.pack(pady=10, padx=20, fill="x")
-
-# تشغيل التطبيق
-app.mainloop()
+    if st.button(app_name):
+        run_application(app_name)
